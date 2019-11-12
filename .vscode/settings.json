@@ -1,0 +1,9 @@
+{
+	"files.exclude": {
+		"D:/Jack S. Jadoenath/Documents/Unreal Projects/BuildingEscape/.vs": true,
+		"D:/Jack S. Jadoenath/Documents/Unreal Projects/BuildingEscape/.vscode": true,
+		"D:/Jack S. Jadoenath/Documents/Unreal Projects/BuildingEscape/Content": true,
+		"D:/Jack S. Jadoenath/Documents/Unreal Projects/BuildingEscape/Intermediate": true,
+		"D:/Jack S. Jadoenath/Documents/Unreal Projects/BuildingEscape/Saved": true
+	}
+}
