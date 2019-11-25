@@ -1,5 +1,6 @@
 {
 	"files.exclude": {
+		"D:/Jack S. Jadoenath/Documents/Unreal Projects/BuildingEscape/.git": true,
 		"D:/Jack S. Jadoenath/Documents/Unreal Projects/BuildingEscape/.vs": true,
 		"D:/Jack S. Jadoenath/Documents/Unreal Projects/BuildingEscape/.vscode": true,
 		"D:/Jack S. Jadoenath/Documents/Unreal Projects/BuildingEscape/Content": true,
