@@ -1,9 +1,10 @@
 {
 	"files.exclude": {
-		"D:/My Documents/Unreal Projects/BuildingEscape/.git": true,
-		"D:/My Documents/Unreal Projects/BuildingEscape/.vscode": true,
-		"D:/My Documents/Unreal Projects/BuildingEscape/Content": true,
-		"D:/My Documents/Unreal Projects/BuildingEscape/Intermediate": true,
-		"D:/My Documents/Unreal Projects/BuildingEscape/Saved": true
+		"D:/Jack S. Jadoenath/Documents/Unreal Projects/BuildingEscape/.git": true,
+		"D:/Jack S. Jadoenath/Documents/Unreal Projects/BuildingEscape/.vs": true,
+		"D:/Jack S. Jadoenath/Documents/Unreal Projects/BuildingEscape/.vscode": true,
+		"D:/Jack S. Jadoenath/Documents/Unreal Projects/BuildingEscape/Content": true,
+		"D:/Jack S. Jadoenath/Documents/Unreal Projects/BuildingEscape/Intermediate": true,
+		"D:/Jack S. Jadoenath/Documents/Unreal Projects/BuildingEscape/Saved": true
 	}
 }
