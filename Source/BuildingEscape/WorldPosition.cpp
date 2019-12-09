@@ -21,8 +21,8 @@ void UWorldPosition::BeginPlay()
 	FString ObjectName = GetOwner()->GetName();
 	UE_LOG(LogTemp, Warning, TEXT("Object name is: %s"), *ObjectName);
 
-	FVector ObjectPositionRaw = GetOwner()->GetActorLocation();
-	FString ObjectPosition = ->ToCompactString();
+	FVector ObjectPosition = GetOwner()->GetActorLocation();
+	FString ObjectPosition = GetOwner()->Get;
 
 	
 }
