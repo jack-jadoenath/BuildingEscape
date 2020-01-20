@@ -28,7 +28,7 @@ void UOpenDoor::BeginPlay()
 	InitialYaw = GetOwner()->GetActorRotation().Yaw;
 	OriginalYaw = InitialYaw;
 	CurrentYaw = InitialYaw;
-	TargetYaw =  TargetYaw + InitialYaw;
+	OpenAngle =  OpenAngle + InitialYaw;
 	
 	ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn();
 
@@ -64,7 +64,7 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 void UOpenDoor::OpenDoor(float DeltaTime)
 {
 	//UE_LOG(LogTemp, Warning, TEXT("Yaw is: %f"), CurrentYaw);
-	CurrentYaw = FMath::Lerp(CurrentYaw, TargetYaw, 1.0f * DeltaTime);
+	CurrentYaw = FMath::Lerp(CurrentYaw, OpenAngle, DoorSpeedOpen * DeltaTime);
 	FRotator DoorRotation = GetOwner()->GetActorRotation();
 	DoorRotation.Yaw = CurrentYaw;
 	GetOwner()->SetActorRotation(DoorRotation);
@@ -73,7 +73,7 @@ void UOpenDoor::OpenDoor(float DeltaTime)
 
 void UOpenDoor::ShutDoor(float DeltaTime)
 {
-	CurrentYaw = FMath::Lerp(CurrentYaw, OriginalYaw, 2.0f * DeltaTime);
+	CurrentYaw = FMath::Lerp(CurrentYaw, OriginalYaw, DoorSpeedClose * DeltaTime);
 	FRotator DoorRotation = GetOwner()->GetActorRotation();
 	DoorRotation.Yaw = CurrentYaw;
 	GetOwner()->SetActorRotation(DoorRotation);
