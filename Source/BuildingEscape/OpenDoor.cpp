@@ -1,9 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "OpenDoor.h"
+#include "Components/PrimitiveComponent.h"
 #include "Engine/World.h"
 #include "GameFramework/PlayerController.h"
 #include "GameFramework/Actor.h"
+
+#define OUT
 
 // Sets default values for this component's properties
 UOpenDoor::UOpenDoor()
@@ -28,10 +31,7 @@ void UOpenDoor::BeginPlay()
 	OriginalYaw = InitialYaw;
 	CurrentYaw = InitialYaw;
 	OpenAngle =  OpenAngle + InitialYaw;
-	
-	ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn();
-
-	
+		
 	if(!PressurePlate)
 	{
 		UE_LOG(LogTemp, Error, TEXT("%s has the OpenDoor component on it, but no pressureplate set"), *GetOwner()->GetName());
@@ -45,7 +45,7 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	if (PressurePlate && PressurePlate->IsOverlappingActor(ActorThatOpens))
+	if (TotalMassOfActors() > MassToOpenDoor)
 	{
 		OpenDoor(DeltaTime);
 		DoorLastOpened = GetWorld()->GetTimeSeconds();
@@ -55,7 +55,6 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 		if(GetWorld()->GetTimeSeconds()-DoorLastOpened>DoorCloseDelay){
 			ShutDoor(DeltaTime);
 		}
-		
 	}
 
 }
@@ -67,7 +66,6 @@ void UOpenDoor::OpenDoor(float DeltaTime)
 	FRotator DoorRotation = GetOwner()->GetActorRotation();
 	DoorRotation.Yaw = CurrentYaw;
 	GetOwner()->SetActorRotation(DoorRotation);
-
 }
 
 void UOpenDoor::ShutDoor(float DeltaTime)
@@ -76,4 +74,19 @@ void UOpenDoor::ShutDoor(float DeltaTime)
 	FRotator DoorRotation = GetOwner()->GetActorRotation();
 	DoorRotation.Yaw = CurrentYaw;
 	GetOwner()->SetActorRotation(DoorRotation);
+}
+
+float UOpenDoor::TotalMassOfActors() const
+{
+	float TotalMass = 0.f;
+	TArray<AActor*> OverlappingActors;
+	if (!PressurePlate) {return TotalMass;}
+	PressurePlate->GetOverlappingActors(OUT OverlappingActors);
+
+	for (AActor* Actor : OverlappingActors)
+	{
+		TotalMass += Actor->FindComponentByClass<UPrimitiveComponent>()->GetMass();
+	}
+	
+	return TotalMass;
 }
